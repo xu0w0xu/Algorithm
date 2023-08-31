@@ -11,20 +11,12 @@ using namespace std;
  * [136] 只出现一次的数字
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        unordered_map <int, int> mp;
-        for(int i =0;i<nums.size();i++){
-            mp[nums[i]]++;
-        }
-        for(auto it = mp.begin();it!=mp.end();it++){
-            if(it->second == 1){
-                return it->first;
-            }
-        }
-        return 0;
+        for (int i = 1; i < nums.size(); i++) nums[0] ^= nums[i];
+        return nums[0];
     }
 };
 // @lc code=end

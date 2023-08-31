@@ -11,17 +11,20 @@ using namespace std;
  * [813] 最大平均值和的分组
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
 public:
     double largestSumOfAverages(vector<int>& nums, int k) {
         int n = nums.size();
         vector<vector<double>> dp(n + 1, vector<double>(k + 1, 0));
         vector<double> sum(n + 1, 0);
+        // sum[i]表示前i个数的和
+        // 用于计算平均值
         for (int i = 1;i <= n;i++) {
             sum[i] = sum[i - 1] + nums[i - 1];
             dp[i][1] = sum[i] / i;
         }
+        // dp[i][j]表示前i个数分成j组的最大平均值和
         for (int i = 1;i <= n;i++) {
             for (int j = 2;j <= k;j++) {
                 for (int p = 0;p < i;p++) {
